@@ -1,0 +1,173 @@
+/* Updated styles with animations and different game pieces */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.title {
+    font-size: 48px;
+    color: #ff5722;
+    text-transform: uppercase;
+    font-weight: bold;
+    text-align: center;
+    position: relative;
+    animation: bounce 1s ease infinite, colorChange 4s ease infinite alternate;
+    transition: transform 0.3s ease-in-out;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-10px);
+    }
+    60% {
+        transform: translateY(-5px);
+    }
+}
+
+@keyframes colorChange {
+    0%, 100% {
+        color: #ff5722;
+    }
+    50% {
+        color: #f54242;
+    }
+}
+
+.title::after {
+    content: "🎮";
+    font-size: 36px;
+    display: inline-block;
+    margin-left: 10px;
+    transform: scale(1.2);
+}
+
+/* Hover effect */
+.title:hover {
+    transform: scale(1.05);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle text shadow on hover */
+    animation: none; /* Disable the animation on hover */
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Use fractional units for flexible column width */
+    gap: 10px;
+    background-color: #fff;
+    padding: 20px; /* Increased padding for better spacing */
+    border-radius: 20px; /* Larger border radius for a smoother appearance */
+    box-shadow: 0 0 20px hsla(0, 2%, 36%, 0.4); /* Increased box shadow for depth */
+    max-width: 400px; /* Limit the board's maximum width for larger screens */
+    margin: 0 auto; /* Center the board horizontally */
+}
+
+.cell {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 36px;
+    background-color: #f2f2f2;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.cell:hover {
+    background-color: #d9d9d9;
+}
+
+.cell-X {
+    color: #f6546a; /* Red */
+}
+
+.cell-O {
+    color: #3b86ff; /* Blue */
+}
+
+.cell-win {
+    animation: scale-up 0.5s ease-in-out;
+}
+
+@keyframes scale-up {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+.message {
+    font-size: 24px;
+    margin-top: 20px;
+    color: #333;
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .message {
+        font-size: 20px;
+        margin-top: 10px;
+    }
+}
+
+/* Button styles */
+.reset-button {
+    font-size: 22px;
+    background-color: #f53c3c;
+    color: #fff;
+    padding: 15px 30px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 40px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.3s ease-in-out;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Fun animation */
+.reset-button::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(255, 255, 255, 0.5) 10%, transparent 10%);
+    background-size: 200% 200%;
+    background-position: center;
+    border-radius: 50%;
+    opacity: 0;
+    transform: scale(0);
+    transition: transform 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+
+/* Professional hover and active styles */
+.reset-button:hover {
+    background-color: #cc0606;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.reset-button:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
